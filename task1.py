@@ -29,12 +29,16 @@ u4 = test4.run()
 test5 = my_neurons(x_arr1, w_arr1, "TEST 1 a=10", 10)
 u5 = test5.run()
 
-fig = plt.figure()
-fig.suptitle("Input 1: Compare percent error for different gain(a)", fontsize=10)
-ax = fig.add_axes([0,0,0.5,1])
+
+# fig = plt.figure()
+# fig.suptitle("Input 1: Compare percent error for different gain(a)", fontsize=16)
+# ax = fig.add_axes([0,0,0.5,1])
 cate = ['a = 0.2', 'a = 0.5', 'a = 1', 'a = 5', 'a = 10']
 results = [u1,u2,u3,u4,u5]
-ax.bar(cate,results)
+plt.xlabel('Gain')
+plt.ylabel('Average percent error of all trials')
+plt.suptitle('Input1: Average percent error of each gain')
+plt.bar(cate,results)
 plt.show()
 
 test1 = my_neurons(x_arr2, w_arr2, "TEST 2 a=0.2", 0.2)
@@ -52,10 +56,10 @@ u4 = test4.run()
 test5 = my_neurons(x_arr2, w_arr2, "TEST 2 a=10", 10)
 u5 = test5.run()
 
-fig = plt.figure()
-fig.suptitle("Input 2: Compare percent error for different gain(a)", fontsize=10)
-ax = fig.add_axes([0,0,0.5,1])
 cate = ['a = 0.2', 'a = 0.5', 'a = 1', 'a = 5', 'a = 10']
 results = [u1,u2,u3,u4,u5]
-ax.bar(cate,results)
+plt.xlabel('Gain')
+plt.ylabel('Average percent error of all trials')
+plt.suptitle('Input2: Average percent error of each gain')
+plt.bar(cate,results)
 plt.show()

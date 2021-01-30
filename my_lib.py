@@ -207,10 +207,10 @@ class my_neurons:
         self.test_name = test_name
         self.a = a
         print("-----------", test_name, "-----------")
-        print("Input:")
-        print("x", x_arr)
-        print("w", w_arr)
-        print("a", a)
+        # print("Input:")
+        # print("x", x_arr)
+        # print("w", w_arr)
+        # print("a", a)
     
     def compute_s (self, x_arr, w_arr):
         # Compute the Result
@@ -261,14 +261,15 @@ class my_neurons:
         # plt.show()
         
         # Compute percent error of each trails
-        pe_100 = abs(self.percent_error(Theoretical_100, Experimantal_100))
-        pe_1000 = abs(self.percent_error(Theoretical_1000, Experimantal_1000))
-        pe_10000 = abs(self.percent_error(Theoretical_10000, Experimantal_10000))
+        pe_100 = (self.percent_error(Theoretical_100, Experimantal_100))
+        pe_1000 = (self.percent_error(Theoretical_1000, Experimantal_1000))
+        pe_10000 = (self.percent_error(Theoretical_10000, Experimantal_10000))
         print("Percent error")
         print("Trial 100:", "%.2f" % pe_100, "%")
         print("Trial 1000:", "%.2f" % pe_1000, "%")
         print("Trial 10000:", "%.2f" % pe_10000, "%")
-
+        mean = statistics.mean([abs(pe_100), abs(pe_1000), abs(pe_10000)])
+        print("Average of percent error:", "%.2f" % mean, "%")
         # fig = plt.figure()
         # fig.suptitle("Percent error"+self.test_name, fontsize=10)
         # ax = fig.add_axes([0,0,0.5,1])
@@ -276,4 +277,4 @@ class my_neurons:
         # results = [pe_100,pe_1000, pe_10000]
         # ax.bar(cate,results)
         # plt.show()
-        return statistics.mean([pe_100, pe_1000, pe_10000]) 
+        return mean
