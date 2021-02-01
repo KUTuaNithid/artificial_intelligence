@@ -4,7 +4,7 @@
 
 
 ![task1_detail](task1_detail.jpg) 
-
+[Source code](code/task1.py)  
 Procedure  
 1. Create 1 neuron which has 5 inputs and use a probabilistic Binary Model (Using random generator to create probabilistic model).
 1. Execute the neuron with parameters defined in table.
@@ -35,7 +35,7 @@ mean = statistics.mean([abs(pe_100), abs(pe_1000), abs(pe_10000)])
 
 &nbsp;  
 
-### **1. Input x1 = [1, 0, 1, -1, 0.5, -0.5]**
+### **1.1. Input x1 = [1, 0, 1, -1, 0.5, -0.5]**
 <center>
 
 | Gain(a) | Trials | Percent error | Average of 3 Trials |
@@ -60,7 +60,7 @@ mean = statistics.mean([abs(pe_100), abs(pe_1000), abs(pe_10000)])
 ![Input1_summary](task1_input1.png) 
 </center>
 
-### **2. Input x2 = [1, -1, 1, 1, -0.5, 1]**
+### **1.2. Input x2 = [1, -1, 1, 1, -0.5, 1]**
 <center>
 
 | Gain(a) | Trials | Percent error | Average of 3 Trials |
@@ -84,10 +84,41 @@ mean = statistics.mean([abs(pe_100), abs(pe_1000), abs(pe_10000)])
 ![Input2_summary](task1_input2.png)  
 </center>
 
-### **Summary***
+### **Summary**
 Trials: As the result, the percent error will be minimum when `Trial = 10000`, so we can conclude that **<mark>the more trial, the less error</mark>**.
 
 Gain(a): As the result, the percent error will be minimum when `a = 10`, so we can conclude that **<mark>the more gain, the less error</mark>**.  
 
 For my opinion, this conclusion could not apply for all situation. It may suitable for these set of input and weigth only.
 
+## **Task 2 - RNN**
+
+Procedure
+1. Make a general program for this RNN.
+1. Execute the neuron with parameters defined in table.
+
+### 
+
+### **2.1. Compute the convergent state of neurons**
+
+<center>
+
+| Input(x) | weight(x) |gain(a) | Convergent state(x) |
+| :----: | :-------:|:----: | :-----: |
+|<pre>[1, 0, 0, 0]</pre>|<pre>[0,  1,  1,  1], #0<br/>[0,  0, -2, -2], #1<br/>[0, -2,  0, -2], #2<br/>[0, -2, -2,  0]  #3</pre>| 1000 | <pre>[1, 1, 0, 0]</pre> |
+|<pre>[1, 1, 1, 1]</pre>|↑| ↑ | <pre>[1, 0, 0, 1]</pre> |
+|<pre>[1, 1, 0, 1]</pre>|↑| ↑ | <pre>[1, 0, 0, 1]</pre> |
+</center>
+⭐x[0], w[0] is dummy
+
+### **2.1. Compute the convergent state of neurons**
+
+| Input(x) | weight(x) |gain(a) | Most existing state (x) | Graph |
+| :----: | :-------:|:----: | :-----: | :----: |
+|<pre>[1, 0, 0, 0]</pre>|<pre>[0,  1,  1,  1], #0<br/>[0,  0, -2, -2], #1<br/>[0, -2,  0, -2], #2<br/>[0, -2, -2,  0]  #3</pre>| 0.2 | <pre>[1, 1, 0, 0]</pre> | ![task2_a02](task2_a02.png)|
+|↑|↑| 0.5 | <pre>[1, 0, 1, 0]</pre> | ![task2_a05](task2_a05.png)|
+|↑|↑| 1.0 | <pre>[1, 1, 0, 0]</pre> |![task2_a10](task2_a10.png)|
+
+### **Summary**
+Convergent: When we set gain to large number, the model will be deterministic and we can find the convergent state. In the other hand, if we set gain to small number, the model will more stochastic and we can not find the convergent state.  
+Gain(a): As the result, the distribution decreases when gain increases. We can conclude that if we want the output to be more deterministic we should increase gain, but if we want the output to be more stochastic we should decrease gain.

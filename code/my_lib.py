@@ -171,6 +171,15 @@ class my_rnn:
         df = pd.DataFrame(res, columns = ['Neurons', 'How_often'])
         print(df)
         print("Max is", df.loc[df.How_often == df['How_often'].max(), 'Neurons'].values[0], "Occured", df['How_often'].max(), "times")
+        
+        cate = ["{0:b}".format(i).zfill(n) for i in range(pow(2,n))]
+        results = freq_tab
+        plt.xlabel('[x1, x2, x3]: State of neurons')
+        plt.ylabel('Frequency')
+        plt.suptitle('State frequency table when gain(a) is {}'.format(self.a))
+        plt.bar(cate, results)
+        plt.show()
+
         return df
     
     def report_energy_short(self, energy_tab, n):
