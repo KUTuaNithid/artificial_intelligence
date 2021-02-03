@@ -245,3 +245,22 @@ Adjust Gain
 | 1.0 | ![task5_ergo_1.0](task5_ergo_1.0.png)
 | 5.0 | ![task5_ergo_5.0](task5_ergo_5.0.png)
 
+Adjust the number of trials and copies
+
+| Input(x) | weight(w) | Gain
+| :----: | :-------| :---: | :---: |
+|<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> | 0.5
+
+| # of Trials | # of copies | the theoritical result vs the experimental result vs the Ergodicity result |
+| :---- | :-------: | :---: |
+| 100 | 100 |![task5_ergo_trial100](task5_ergo_trial100.png)
+| 1000 | 1000 |![task5_ergo_trial1000](task5_ergo_trial1000.png)
+| 10000 | 10000 |![task5_ergo_trial10000](task5_ergo_trial10000.png)
+
+### **Summary**
+As the result, the ergodicity can be replaced the Gibbs copies if we have a good parameter tuning.  
+For Gain tuning, the lower gain makes the oscillated result, so 3 results are going to different ways. The more gain makes the result too determined. As you can see, when the gain is 5 only the ergodicity result is not compatible. The suitable gain should be 0.5  
+For trials and copies tuning, the higher number makes the result better.
+
+## **Task 5.1 - Application**
+An application of RNN solves the simultaneous equation.
