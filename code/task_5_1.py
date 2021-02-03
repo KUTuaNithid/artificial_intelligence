@@ -11,19 +11,25 @@ from my_lib import *
 ######################################
 #######         TASK 5         #######
 ############### START! ###############
-trials = 1000
-copies = 1000
+trials = 10000
+copies = 10000
 a = 0.5
 x_arr = np.array([1, 1, 1, 1, 1, 1])
 
-w_arr = np.array([[0, 0.5, 0.5, 0.5, 0.5, 0.5], # 0 
-                  [0.5, 0, -2, -2, -2, -2], # 1
-                  [0.5, -2, 0, -2, -2, -2], # 2 
-                  [0.5, -2, -2, 0, -2, -2],
-                  [0.5, -2, -2, -2, 0, -2],
-                  [0.5, -2, -2, -2, -2, 0]
+# w_arr = np.array([[0, 0.5, 0.5, 0.5, 0.5, 0.5], # 0 
+#                   [0.5, 0, -2, -2, -2, -2], # 1
+#                   [0.5, -2, 0, -2, -2, -2], # 2 
+#                   [0.5, -2, -2, 0, -2, -2],
+#                   [0.5, -2, -2, -2, 0, -2],
+#                   [0.5, -2, -2, -2, -2, 0]
+#                   ])# 3
+w_arr = np.array([[0, 1, 1, 1, 1, 1], # 0 
+                  [1, 0, -2, -2, -2, -2], # 1
+                  [1, -2, 0, -2, -2, -2], # 2 
+                  [1, -2, -2, 0, -2, -2],
+                  [1, -2, -2, -2, 0, -2],
+                  [1, -2, -2, -2, -2, 0]
                   ])# 3
-
 # x_arr = np.array([1, 1, 1, 1])
 
 # w_arr = np.array([[0, 1, 1, 1], # 0 
@@ -89,11 +95,11 @@ for i in range(copies):
 
 df = ergo_rnn.report_gibb_vs_ergo(energy_tab, freq_tab, ergo_freq_tab, ergo_rnn.n, a, copies)
 
-Th_vs_Ex = pd.concat([df['Ergodicity'], df['Experimental']], axis = 1)
+Th_vs_Ex = pd.concat([df['Ergodicity'], df['Experimental'], df['Theoretical']], axis = 1)
 plt.figure()
 Th_vs_Ex.plot()
-
-
+# plt.savefig('task5_ergo_{}.png'.format(a))
+plt.savefig('task5_ergo_trial{}.png'.format(trials))
 ######  !COMPARE ERGODICITY !  #######
 ######################################
 #######         TASK 5         #######

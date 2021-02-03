@@ -89,7 +89,7 @@ class my_rnn:
         while count < 3:
             x_arr_temp = np.copy(self.x_arr)
             for i in range(1, self.n + 1):
-                # Correct energy of current state
+                # Collect energy of current state
                 self.energy_tab.append(np.concatenate((np.copy(self.x_arr[1:]), [self.get_energy(self.x_arr, self.w_arr, self.n)]), axis = 0))
 
                 if model == "deter":
@@ -97,7 +97,7 @@ class my_rnn:
                 else:
                     self.x_arr[i] = self.compute_state(i)
             # Compare that this time is same as previous or not
-            count = count + 1 if np.array_equal(x_arr_temp, self.x_arr) else 0
+            count = (count + 1) if np.array_equal(x_arr_temp, self.x_arr) else 0
         return self.x_arr, self.energy_tab
 
     def run_trail(self, a, trail):

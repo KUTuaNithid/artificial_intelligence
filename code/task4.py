@@ -11,25 +11,32 @@ from my_lib import *
 ######################################
 #######         TASK 4         #######
 ############### START! ###############
-trials = 1000
+trials = 100
 copies = 1000
-a = 0.5
-x_arr = np.array([1, 1, 1, 1, 1, 1])
+a = 5.0
+# x_arr = np.array([1, 1, 1, 1, 1, 1])
 
-w_arr = np.array([[0, 0.5, 0.5, 0.5, 0.5, 0.5], # 0 
-                  [0.5, 0, -2, -2, -2, -2], # 1
-                  [0.5, -2, 0, -2, -2, -2], # 2 
-                  [0.5, -2, -2, 0, -2, -2],
-                  [0.5, -2, -2, -2, 0, -2],
-                  [0.5, -2, -2, -2, -2, 0]
-                  ])# 3
-# x_arr = np.array([1, 1, 1, 1])
-
-# w_arr = np.array([[0, 1, 1, 1], # 0 
-#                   [0, 0, -2, -2], # 1
-#                   [0, -2, 0, -2], # 2 
-#                   [0, -2, -2, 0]
+# w_arr = np.array([[0, 0.5, 0.5, 0.5, 0.5, 0.5], # 0 
+#                   [0.5, 0, -2, -2, -2, -2], # 1
+#                   [0.5, -2, 0, -2, -2, -2], # 2 
+#                   [0.5, -2, -2, 0, -2, -2],
+#                   [0.5, -2, -2, -2, 0, -2],
+#                   [0.5, -2, -2, -2, -2, 0]
 #                   ])# 3
+# w_arr = np.array([[0,  1,  1,  1,  1,  1], # 0 
+#                   [1,  0, -2, -2, -2, -2], # 1
+#                   [1, -2,  0, -2, -2, -2], # 2 
+#                   [1, -2, -2,  0, -2, -2],
+#                   [1, -2, -2, -2,  0, -2],
+#                   [1, -2, -2, -2, -2,  0]
+#                   ])# 3
+x_arr = np.array([1, 1, 1, 1])
+
+w_arr = np.array([[0, 1, 1, 1], # 0 
+                  [1, 0, -2, -2], # 1
+                  [1, -2, 0, -2], # 2 
+                  [1, -2, -2, 0]
+                  ])# 3
 
 test_list = []
 for i in range(copies):
@@ -90,7 +97,19 @@ Th_vs_Ex.plot()
 
 morn_df = test_list[0].report_mornitor(mornitor_tab, test_list[0].n)
 
-    
+np_morn = np.array(mornitor_tab)
+row, col = np_morn.shape
+diff_tab = np.zeros(row-1)
+for i in range(1, row):
+    diff = 0
+    for j in range(0, col):
+        diff = diff + abs(np_morn[i, j] - np_morn[i-1, j])
+    diff_tab[i-1] = diff/2
+plt.figure()
+plt.xlabel('Trials')
+plt.ylabel('The changing of neurons')
+plt.suptitle('The changing of neurons in each trail when gain(a) is {}'.format(a))
+plt.bar(np.arange(1,trials,1), diff_tab)
 ######################################
 #######         TASK 4         #######
 ################ END! ################

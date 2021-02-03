@@ -92,15 +92,17 @@ Gain(a): As the result, the percent error will be minimum when `a = 10`, so we c
 For my opinion, this conclusion could not apply for all situation. It may suitable for these set of input and weigth only.
 
 ## **Task 2 - RNN**
-
+![task2_detail](task2_detail.jpg) 
+[Source code](code/task2.py)  
 Procedure
-1. Make a general program for this RNN.
+1. Make a general program for the winner takes all RNN.
+1. Use the probabilistic binary model for its neurons.
 1. Execute the neuron with parameters defined in table.
 
 ### 
 
 ### **2.1. Compute the convergent state of neurons**
-
+Repeatdly update each neuron until reach the convergent state.
 <center>
 
 | Input(x) | weight(x) |gain(a) | Convergent state(x) |
@@ -111,14 +113,135 @@ Procedure
 </center>
 ⭐x[0], w[0] is dummy
 
-### **2.1. Compute the convergent state of neurons**
+### **2.2. Try with different gain**
+Change the gain and see what happen
+| Input(x) | weight(x) |
+| :----: | :-------:|
+|<pre>[1, 0, 0, 0]</pre>|<pre>[0,  1,  1,  1], #0<br/>[0,  0, -2, -2], #1<br/>[0, -2,  0, -2], #2<br/>[0, -2, -2,  0]  #3</pre>|
 
-| Input(x) | weight(x) |gain(a) | Most existing state (x) | Graph |
-| :----: | :-------:|:----: | :-----: | :----: |
-|<pre>[1, 0, 0, 0]</pre>|<pre>[0,  1,  1,  1], #0<br/>[0,  0, -2, -2], #1<br/>[0, -2,  0, -2], #2<br/>[0, -2, -2,  0]  #3</pre>| 0.2 | <pre>[1, 1, 0, 0]</pre> | ![task2_a02](task2_a02.png)|
-|↑|↑| 0.5 | <pre>[1, 0, 1, 0]</pre> | ![task2_a05](task2_a05.png)|
-|↑|↑| 1.0 | <pre>[1, 1, 0, 0]</pre> |![task2_a10](task2_a10.png)|
+| gain(a) | Most existing state (x) | Graph |
+|:----: | :-----: | :----: |
+| 0.2 | <pre>[1, 1, 0, 0]</pre> | ![task2_a02](task2_a02.png)|
+| 0.5 | <pre>[1, 0, 1, 0]</pre> | ![task2_a05](task2_a05.png)|
+| 1.0 | <pre>[1, 1, 0, 0]</pre> |![task2_a10](task2_a10.png)|
 
 ### **Summary**
 Convergent: When we set gain to large number, the model will be deterministic and we can find the convergent state. In the other hand, if we set gain to small number, the model will more stochastic and we can not find the convergent state.  
 Gain(a): As the result, the distribution decreases when gain increases. We can conclude that if we want the output to be more deterministic we should increase gain, but if we want the output to be more stochastic we should decrease gain.
+
+## **Task 3 - The Decreasing of Energy**
+![task3_detail](task3_detail.jpg)  
+[Source code](code/task3.py)
+Procedure
+1. Make a general program for the winner takes all RNN.
+1. Use the deterministic binary model for its neurons.
+1. Execute the neuron with parameters defined in table.
+1. Updating each neuron and record energy.
+1. Change weight and check the changing of energy.
+
+
+| Input(x) | weight(x) | Convergent state(x) |
+| :----: | :-------|:----: | :-----: |
+|<pre>[1, 1, 1, 1, 1, 1]</pre>|<font size="2"><pre>[0, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-2,-2,-2],#1<br/>[1,-2, 0,-2,-2,-2],#2<br/>[1,-2,-2, 0,-2,-2],#3<br/>[1,-2,-2,-2, 0,-2],#4<br/>[1,-2,-2,-2,-2, 0] #5<br/></pre></font>| <pre>[1, 0, 0, 0, 0, 1]</pre> | 
+⭐x[0], w[0] is dummy
+<p align="center">
+Energy Table
+</p>
+<p align="center">
+  <img src="task3_1enetab.PNG" />
+</p>
+
+| Input(x) | weight(w) | Convergent state(x) |
+| :----: | :------- |:----: | :-----: |
+|<font size="1"><pre>[1, 1, 1, 1, 1, 1, 1, 1]</pre></font> |<font size="1"><pre>[0, 1, 1, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-3,-4,-2,-3,-4],#1<br/>[1,-2, 0,-4,-5,-6,-1,-2],#2<br/>[1,-3,-4, 0,-1,-2,-3,-4],#3<br/>[1,-4,-5,-1, 0,-1,-2,-3],#4<br/>[1,-2,-6,-2,-1, 0,-1,-2],#5<br/>[1,-3,-1, 3,-2,-1, 0,-1],#6<br/>[1,-4,-2, 4,-3,-2,-1, 0] #7</pre></font> | <font size="1"><pre>[1, 0, 0, 1, 1, 0, 0, 0]</pre></font> |
+⭐x[0], w[0] is dummy
+<p align="center">
+Energy Table
+</p>
+<p align="center">
+  <img src="task3_2enetab.PNG" />
+</p>
+
+### **Summary**
+As the result, the energy of RNN always decreases whtn the neuron update its state. The convergence state will has a minimum energy. 
+
+## **Task 4 - RNNs with Boltzmann's Distribution**
+![task4_detail](task4_detail.jpg)  
+[Source code](code/task4.py)
+
+### **4.1. Boltzman's distribution**
+Procedure
+1. Make a copy of RNN
+1. Update the state of neuron 1 by 1 for each copy
+1. The experimental result: Collect the number of Gibbs copy in each state
+1. The theoritical result: Caculate follows Boltzman's distribution for all possible state.
+| Input(x) | weight(w) |
+| :----: | :-------|
+|<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> |
+
+| # of Trials | # of Copies | Gain(a) | Distribution graph
+| :---- | :------- | :------- | :----: |
+| 100 | 100 | 0.5 | ![task4_100x100](task4_100x100.png) 
+| 100 | 1000 | 0.5 |![task4_100x1000](task4_100x1000.png) 
+| 1000 | 1000 | 0.5 |![task4_1000x1000](task4_1000x1000.png) 
+| 1000 | 1000 | 0.2 |![task4_1000x1000_a0.2](task4_1000x1000_a0.2.png) 
+| 1000 | 1000 | 1.0 |![task4_1000x1000_a1](task4_1000x1000_a1.png) 
+| 1000 | 1000 | 1.5 |![task4_1000x1000_a15](task4_1000x1000_a15.png)
+
+<p align="center">
+Energy Table: This table shows the energy of each state.
+</p>
+
+| # of Trials | # of Copies | Gain(a) | Energy table
+| :---- | :------- | :------- | :----: |
+| 1000 | 1000 | 0.5 |![task4_1000x1000_table](task4_1000x1000_table.jpg) 
+
+### **Summary**
+As the result, the experimental result and the theroetical result is going to the same way. When we increase the number of copies, the result is more closer. The increasing of the number of trials also effects the result, but it not that much.  
+The Changing of gain also effects to the result. The more gain makes the result closer, but the distribution of result will be decreased.  
+For my opinion, the most suitable parameters is ``` Trials = 1000, Copies = 1000, Gain = 0.5```  
+As the result of energy, the most of experimental result will have the lowest energy. Thus, we predict the equilibrium state from an energy. If the energy is low, it is more likely to be equilibrium state.
+### **4.2. Equilibrium**
+Procedure
+1. Make a copy of RNN
+1. Update the state of neuron 1 by 1 for each copy
+1. Collect the number of copy in each state
+1. Check the changing of number of copy after updated many times
+
+| Input(x) | weight(w) | # of Trials | # of Copies |
+| :----: | :-------| :------- | :----: |
+|<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> | 100 | 1000|
+
+| Gain(a) | # of copy in each state | ⭐The changing of copy in every trails |
+| :---- | :-------: | :-------: |
+| 0.1 | ![task4_equi_01](task4_equi_01_TAB.png) | ![task4_equi_01](task4_equi_01.png) |
+| 0.5 | ![task4_equi_01](task4_equi_05_TAB.png) | ![task4_equi_01](task4_equi_05.png) |
+| 1.0 | ![task4_equi_01](task4_equi_10_TAB.png) | ![task4_equi_01](task4_equi_10.png) |
+| 5.0 | ![task4_equi_01](task4_equi_50_TAB.png) | ![task4_equi_01](task4_equi_50.png) |
+
+⭐ This value shows the number of copy which changes to new state. 
+
+### **Summary**
+As the result, many copies change their state in starting time. After updating around 10-20 times, the number of changing decreases a lot. After that, this number just change a little bit. Thus, we can conclude that when this number is not changed too much comparing to previos times, then this system reaches the equilibrium.  
+The increasing of gain makes copies less state change.
+
+## **Task 5.1 - Ergodicity**
+Due to the Gibbs copies method consumes a lot of memory, Ergodicity has been publish. We can use a time series of states generated by a single RNN, instead of the states of Gibbs copies.  
+Procedure
+1. Ergodicity result: Make 1 RNN and repeatdly update and collect the state of RNN in each time
+1. Experimental result(Gibbs copies): Use Gibbs copies RNN from task 4
+1. Compare result: the theoritical result vs the experimental result vs the Ergodicity result
+
+Adjust Gain  
+
+| Input(x) | weight(w) | # of Trials | # of copies
+| :----: | :-------| :---: | :---: |
+|<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> | 1000 | 1000
+
+| Gain(a) | the theoritical result vs the experimental result vs the Ergodicity result |
+| :---- | :-------: |
+| 0.1 | ![task5_ergo_0.1](task5_ergo_0.1.png)
+| 0.5 | ![task5_ergo_0.5](task5_ergo_0.5.png)
+| 1.0 | ![task5_ergo_1.0](task5_ergo_1.0.png)
+| 5.0 | ![task5_ergo_5.0](task5_ergo_5.0.png)
+
