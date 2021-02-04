@@ -175,6 +175,7 @@ Procedure
 1. Update the state of neuron 1 by 1 for each copy
 1. The experimental result: Collect the number of Gibbs copy in each state
 1. The theoritical result: Caculate follows Boltzman's distribution for all possible state.
+
 | Input(x) | weight(w) |
 | :----: | :-------|
 |<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> |
@@ -210,9 +211,9 @@ Procedure
 
 | Input(x) | weight(w) | # of Trials | # of Copies |
 | :----: | :-------| :------- | :----: |
-|<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> | 100 | 1000|
+|<font size="2"><pre>[1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1],#0<br/>[1,  0, -2, -2],#1<br/>[1, -2,  0, -2],#2<br/>[1, -2, -2,  0],#3<br/></pre></font> | 100 | 1000|
 
-| Gain(a) | # of copy in each state | ⭐The changing of copy in every trails |
+| Gain(a) | # of copy in each state | ⭐The changing state of each copy in every trails |
 | :---- | :-------: | :-------: |
 | 0.1 | ![task4_equi_01](task4_equi_01_TAB.png) | ![task4_equi_01](task4_equi_01.png) |
 | 0.5 | ![task4_equi_01](task4_equi_05_TAB.png) | ![task4_equi_01](task4_equi_05.png) |
@@ -222,7 +223,7 @@ Procedure
 ⭐ This value shows the number of copy which changes to new state. 
 
 ### **Summary**
-As the result, many copies change their state in starting time. After updating around 10-20 times, the number of changing decreases a lot. After that, this number just change a little bit. Thus, we can conclude that when this number is not changed too much comparing to previos times, then this system reaches the equilibrium.  
+As the result, many copies change their state in the starting time. After updating around 10-20 times, the number of changing decreases a lot. After that, this number just change a little bit. Thus, we can conclude that when this number is not changed too much comparing to previos times, then this system reaches the equilibrium.  
 The increasing of gain makes copies less state change.
 
 ## **Task 5.1 - Ergodicity**
@@ -231,6 +232,7 @@ Procedure
 1. Ergodicity result: Make 1 RNN and repeatdly update and collect the state of RNN in each time
 1. Experimental result(Gibbs copies): Use Gibbs copies RNN from task 4
 1. Compare result: the theoritical result vs the experimental result vs the Ergodicity result
+[Source code](code/task5.py)
 
 Adjust Gain  
 
@@ -264,3 +266,28 @@ For trials and copies tuning, the higher number makes the result better.
 
 ## **Task 5.1 - Application**
 An application of RNN solves the simultaneous equation.
+![task5_equation](task5_equation.png)  
+
+Procedure
+1. Construct an energy function with the standard for, so that its minimum is the solution of the simultaneous equation.  
+<img src="task5_construct.png" width="350">
+1. Expand this equation nad get the standard form.
+1. Get all weight and theta values from standard equation. Don't forget Wnm = Wmn, so the weight array need to be adjusted.  
+<img src="task5_w.png" width="300">
+1. Create the RNN with this weight.
+1. Repeatdly update. The most frequently appeared state is the solution
+
+[Source code](code/task5.py)
+
+| Input(x) | weight(w) | # of Trials | # of copies |
+| :----: | :-------| :-------: | :---: |
+|<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[  0. ,  -2.5, -10.5,   0.5,  -1.5, -10.5],#0<br/>[ -2.5,   0. ,   5. ,   3. ,   5. ,  -1. ],#1<br/>[-10.5,   5. ,   0. ,   1. ,   1. ,  -2. ],#2<br/>[  0.5,   3. ,  -1. ,   0. ,   1. ,   5. ],#3<br/>[ -1.5,   5. ,   1. ,  -1. ,   0. ,   1. ],#4<br/>[-10.5,  -1. ,  -2. ,   5. ,   1. ,   0. ] #5</pre></font> | 1000 | 1000
+
+| Gain (a) | Solution[X1, X2, X3, X4, X5] | The frequency table of each result | Graph |
+| :----: | :-------: | :-------: | :---: |
+| 0.1 | [1, 0, 1, 1, 0] | <img src="task5_equa_tab_01.jpg" width="300"> | <img src="task5_equation_a0.1.png" width="300">
+| 0.5 | ↑ | <img src="task5_equa_tab_05.jpg" width="300"> | <img src="task5_equation_a0.5.png" width="300">
+| 1.0 | ↑ | <img src="task5_equa_tab_10.jpg" width="300"> | <img src="task5_equation_a1.0.png" width="300">
+
+### **Summary**
+As the result, we can use the RNN method to find the solution of the simultaneius equation. All of method whether a theoritical, Gibbs copies, Ergodicity can get the correct result. Gain makes the confident of result changes, but we can get the correct result from all gain.

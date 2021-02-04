@@ -12,9 +12,9 @@ from my_lib import *
 #######       TASK 5 _2        #######
 ############### START! ###############
 
-trials = 100
+trials = 1000
 copies = 1000
-a = 5
+a = 1.0
 
 minus = -1
 
@@ -89,3 +89,4 @@ df = ergo_rnn.report_gibb_vs_ergo(energy_tab, freq_tab, ergo_freq_tab, ergo_rnn.
 Th_vs_Ex = pd.concat([df['Ergodicity'], df['Experimental']], axis = 1)
 plt.figure()
 Th_vs_Ex.plot()
+plt.savefig('task5_equation_a{}.png'.format(a))
