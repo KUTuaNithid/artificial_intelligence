@@ -121,8 +121,8 @@ Change the gain and see what happen
 
 | gain(a) | Most existing state (x) | Graph |
 |:----: | :-----: | :----: |
-| 0.2 | <pre>[1, 1, 0, 0]</pre> | ![task2_a02](images/task2_a02.png)|
-| 0.5 | <pre>[1, 0, 1, 0]</pre> | ![task2_a05](images/task2_a05.png)|
+| 0.2 | <pre>[1, 1, 0, 0]</pre> |![task2_a02](images/task2_a02.png)|
+| 0.5 | <pre>[1, 0, 1, 0]</pre> |![task2_a05](images/task2_a05.png)|
 | 1.0 | <pre>[1, 1, 0, 0]</pre> |![task2_a10](images/task2_a10.png)|
 
 ### **Summary**
@@ -144,11 +144,13 @@ Procedure
 | :----: | :-------|:----: | :-----: |
 |<pre>[1, 1, 1, 1, 1, 1]</pre>|<font size="2"><pre>[0, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-2,-2,-2],#1<br/>[1,-2, 0,-2,-2,-2],#2<br/>[1,-2,-2, 0,-2,-2],#3<br/>[1,-2,-2,-2, 0,-2],#4<br/>[1,-2,-2,-2,-2, 0] #5<br/></pre></font>| <pre>[1, 0, 0, 0, 0, 1]</pre> | 
 ⭐x[0], w[0] is dummy
+
 <p align="center">
 Energy Table
 </p>
+
 <p align="center">
-  <img src="task3_1enetab.PNG" />
+  <img src="images/task3_1enetab.PNG" />
 </p>
 
 | Input(x) | weight(w) | Convergent state(x) |
