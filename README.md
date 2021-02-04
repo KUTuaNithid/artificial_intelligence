@@ -157,11 +157,13 @@ Energy Table
 | :----: | :------- |:----: | :-----: |
 |<font size="1"><pre>[1, 1, 1, 1, 1, 1, 1, 1]</pre></font> |<font size="1"><pre>[0, 1, 1, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-3,-4,-2,-3,-4],#1<br/>[1,-2, 0,-4,-5,-6,-1,-2],#2<br/>[1,-3,-4, 0,-1,-2,-3,-4],#3<br/>[1,-4,-5,-1, 0,-1,-2,-3],#4<br/>[1,-2,-6,-2,-1, 0,-1,-2],#5<br/>[1,-3,-1, 3,-2,-1, 0,-1],#6<br/>[1,-4,-2, 4,-3,-2,-1, 0] #7</pre></font> | <font size="1"><pre>[1, 0, 0, 1, 1, 0, 0, 0]</pre></font> |
 ⭐x[0], w[0] is dummy
+
 <p align="center">
 Energy Table
 </p>
+
 <p align="center">
-  <img src="task3_2enetab.PNG" />
+  <img src="images/task3_2enetab.PNG" />
 </p>
 
 ### **Summary**
