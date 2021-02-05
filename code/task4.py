@@ -102,13 +102,26 @@ for test in test_list:
 #     freq_tab[test.get_result(test.x_arr,test.n)] += 1
 
 df = test_list[0].report_energy(energy_tab, freq_tab, test_list[0].n, a, copies)
-
+# Plot Comparision graph
 Th_vs_Ex = pd.concat([df['Theoretical'], df['Experimental']], axis = 1)
 plt.figure()
-Th_vs_Ex.plot()
+ax = Th_vs_Ex.plot()
+ax.set_xlabel("State(decimal)")
+ax.set_ylabel("Number of copy")
+plt.savefig('task4_compare_tri{}_Cop{}_a{}.png'.format(trials, copies, a))
+
+# Plot histogram graph
+# All data that have same energy
+all_th_ex = df.groupby(['Energy']).sum()
+plt.figure()
+ax = all_th_ex.plot(kind='bar')
+ax.set_xlabel("Energy")
+ax.set_ylabel("Number of copy")
+plt.savefig('task4_histo__tri{}_Cop{}_a{}.png'.format(trials, copies, a))
 
 morn_df = test_list[0].report_mornitor(mornitor_tab, test_list[0].n)
 
+# Find the number of copy that change the state
 np_morn = np.array(mornitor_tab)
 row, col = np_morn.shape
 diff_tab = np.zeros(row-1)

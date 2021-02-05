@@ -195,7 +195,7 @@ class my_rnn:
         'Energy': energy_tab, 'Theoretical': thero_tab, 'Experimental': freq_tab
         }
         df = pd.DataFrame(res, columns = ['Neurons', 'Energy', 'Theoretical', 'Experimental'])
-        pd.options.display.float_format = "{:,.2f}".format
+        # pd.options.display.float_format = "{:,.2f}".format
         print(df)
         return df
         # df = pd.DataFrame(energy_tab, columns = header)

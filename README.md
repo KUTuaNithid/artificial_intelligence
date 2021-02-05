@@ -128,7 +128,7 @@ Set the gain to a large number, so the model will be deterministic. Repeatedly u
 ⭐x[0], w[0] is dummy
 
 ### **2.2. Try with different gain**
-Change the gain, so the model will not be deterministic. In this test, we can not find convergent state.
+Change the gain, so the model will not be deterministic. In this test, we can not find convergent state. We will check the most existing state and the distribution of result instead.
 
 **Constant Parameters**
 
@@ -166,7 +166,7 @@ Procedure
 |<pre>[1, 1, 1, 1, 1, 1]</pre>|<font size="2"><pre>[0, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-2,-2,-2],#1<br/>[1,-2, 0,-2,-2,-2],#2<br/>[1,-2,-2, 0,-2,-2],#3<br/>[1,-2,-2,-2, 0,-2],#4<br/>[1,-2,-2,-2,-2, 0] #5<br/></pre></font>| <pre>[1, 0, 0, 0, 0, 1]</pre> | 
 
 ##### <p align='center'>Energy of the RNN in each updating</p> 
-<p align='center'><img src="images/task3_1enetab.PNG" /></p>
+<p align='center'><img src="images/task3_1enetab.PNG" width="200"></p>
 
 
 #### *<p align='center'> Author's defined RNN </p>*
@@ -175,7 +175,7 @@ Procedure
 |<font size="1"><pre>[1, 1, 1, 1, 1, 1, 1, 1]</pre></font> |<font size="1"><pre>[0, 1, 1, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-3,-4,-2,-3,-4],#1<br/>[1,-2, 0,-4,-5,-6,-1,-2],#2<br/>[1,-3,-4, 0,-1,-2,-3,-4],#3<br/>[1,-4,-5,-1, 0,-1,-2,-3],#4<br/>[1,-2,-6,-2,-1, 0,-1,-2],#5<br/>[1,-3,-1, 3,-2,-1, 0,-1],#6<br/>[1,-4,-2, 4,-3,-2,-1, 0] #7</pre></font> | <font size="1"><pre>[1, 0, 0, 1, 1, 0, 0, 0]</pre></font> |
 
 ##### <p align='center'>Energy of the RNN in each updating</p> 
-<p align='center'><img src="images/task3_2enetab.PNG" /></p>
+<p align='center'><img src="images/task3_2enetab.PNG" width="200"></p>
 
 #### **Summary**
 As the result, the energy of RNN always decreases when the neuron updates its state. The convergence state will has a minimum energy. 
@@ -202,22 +202,27 @@ Procedure
 
 | # of Trials | # of Copies | Gain(a) | Energy table
 | :---- | :------- | :------- | :----: |
-| 1000 | 1000 | 0.5 |![task4_1000x1000_table](images/task4_1000x1000_table.jpg) 
-#### ***<p align="center">Distribution graph: To compare the theoretical and the experimental result</p>***
+| 1000 | 1000 | 0.5 |<img src="images/task4_1000x1000_table.jpg" width="200"> |
+#### ***<p align="center">Comparing graph: To compare the theoretical and the experimental result</p>***
 
-| # of Trials | # of Copies | Gain(a) | Distribution graph
-| :---- | :------- | :------- | :----: |
-| 100 | 100 | 0.5 | ![task4_100x100](images/task4_100x100.png) 
-| 100 | 1000 | 0.5 |![task4_100x1000](images/task4_100x1000.png) 
-| 1000 | 1000 | 0.5 |![task4_1000x1000](images/task4_1000x1000.png) 
-| 1000 | 1000 | 0.2 |![task4_1000x1000_a0.2](images/task4_1000x1000_a0.2.png) 
-| 1000 | 1000 | 1.0 |![task4_1000x1000_a1](images/task4_1000x1000_a1.png) 
-| 1000 | 1000 | 1.5 |![task4_1000x1000_a15](images/task4_1000x1000_a15.png)
+##### **Adjust Trials and Copies**
+| # of Trials | # of Copies | Gain(a) | Histogram of energy | Comparison graph
+| :---- | :------- | :-------: | :----: | :----: |
+| 100 | 100 | 0.5 | ![task4_histo__tri100_Cop100_a0.5](images/task4_histo__tri100_Cop100_a0.5.png) | ![task4_compare_tri100_Cop100_a0.5](images/task4_compare_tri100_Cop100_a0.5.png) 
+| 100 | 1000 | 0.5 |![task4_histo__tri100_Cop1000_a0.5](images/task4_histo__tri100_Cop1000_a0.5.png) | ![task4_compare_tri100_Cop1000_a0.5](images/task4_compare_tri100_Cop1000_a0.5.png) 
+| 1000 | 1000 | 0.5 |![task4_histo__tri1000_Cop1000_a0.5](images/task4_histo__tri1000_Cop1000_a0.5.png) | ![task4_compare_tri1000_Cop1000_a0.5](images/task4_compare_tri1000_Cop1000_a0.5.png)
+
+##### **Adjust gain**
+| # of Trials | # of Copies | Gain(a) | Histogram of energy | Comparison graph
+| :---- | :------- | :-------: | :----: | :----: |
+| 1000 | 1000 | 0.2 |![task4_histo__tri1000_Cop1000_a0.2](images/task4_histo__tri1000_Cop1000_a0.2.png) | ![task4_compare_tri1000_Cop1000_a0.2](images/task4_compare_tri1000_Cop1000_a0.2.png) 
+| 1000 | 1000 | 1.0 |![task4_histo__tri1000_Cop1000_a1.0](images/task4_histo__tri1000_Cop1000_a1.0.png) | ![task4_compare_tri1000_Cop1000_a1.0](images/task4_compare_tri1000_Cop1000_a1.0.png) 
+| 1000 | 1000 | 1.5 |![task4_histo__tri1000_Cop1000_a1.5](images/task4_histo__tri1000_Cop1000_a1.5.png) | ![task4_compare_tri1000_Cop1000_a1.5](images/task4_compare_tri1000_Cop1000_a1.5.png)
 
 #### ***<p align="center">Try with author's RNN defined in Task 3</p>***
-| # of Trials | # of Copies | Gain(a) | Distribution graph
-| :---- | :------- | :------- | :----: |
-| 100 | 1000 | 0.5 |![task4_100x1000_user](images/task4_100x1000_user.png) 
+| # of Trials | # of Copies | Gain(a) | Histogram of energy | Comparison graph
+| :---- | :------- | :------- | :----: | :----: |
+| 100 | 1000 | 0.5 |![task4_histo__tri100_Cop1000_a0.5_user](images/task4_histo__tri100_Cop1000_a0.5_user.png) |![task4_compare_tri100_Cop1000_a0.5_user](images/task4_compare_tri100_Cop1000_a0.5_user.png) 
 
 <p align='center'><img src="images/task4_100x1000_user_table.PNG" /></p>
 
