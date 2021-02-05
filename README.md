@@ -121,14 +121,14 @@ Set the gain to a large number, so the model will be deterministic. Repeatedly u
 **Test Results**
 
 | Input(x) | Convergent state(x) |
-| :----: | :-------:|:----: | :-----: |
+| :----: | :-------:|
 |<pre>[1, 0, 0, 0]</pre>| <pre>[1, 1, 0, 0]</pre> |
 |<pre>[1, 1, 1, 1]</pre>|↑| ↑ | <pre>[1, 0, 0, 1]</pre> |
 |<pre>[1, 1, 0, 1]</pre>|↑| ↑ | <pre>[1, 0, 0, 1]</pre> |
 ⭐x[0], w[0] is dummy
 
 ### **2.2. Try with different gain**
-Change the gain and see what happen  
+Change the gain, so the model will not be deterministic. In this test, we can not find convergent state.
 
 **Constant Parameters**
 
