@@ -12,9 +12,9 @@ from my_lib import *
 #######         TASK 4         #######
 ############### START! ###############
 trials = 100
-copies = 100
-a = 0.2
-x_arr = np.array([1, 1, 1, 1, 1, 1])
+copies = 1000
+a = 0.5
+# x_arr = np.array([1, 1, 1, 1, 1, 1])
 
 # w_arr = np.array([[0, 0.5, 0.5, 0.5, 0.5, 0.5], # 0 
 #                   [0.5, 0, -2, -2, -2, -2], # 1
@@ -23,13 +23,13 @@ x_arr = np.array([1, 1, 1, 1, 1, 1])
 #                   [0.5, -2, -2, -2, 0, -2],
 #                   [0.5, -2, -2, -2, -2, 0]
 #                   ])# 3
-w_arr = np.array([[0,  1,  1,  1,  1,  1], # 0 
-                  [1,  0, -2, -2, -2, -2], # 1
-                  [1, -2,  0, -2, -2, -2], # 2 
-                  [1, -2, -2,  0, -2, -2],
-                  [1, -2, -2, -2,  0, -2],
-                  [1, -2, -2, -2, -2,  0]
-                  ])
+# w_arr = np.array([[0,  1,  1,  1,  1,  1], # 0 
+#                   [1,  0, -2, -2, -2, -2], # 1
+#                   [1, -2,  0, -2, -2, -2], # 2 
+#                   [1, -2, -2,  0, -2, -2],
+#                   [1, -2, -2, -2,  0, -2],
+#                   [1, -2, -2, -2, -2,  0]
+#                   ])
 # x_arr = np.array([1, 1, 1, 1])
 
 # w_arr = np.array([[0, 1, 1, 1], # 0 
@@ -37,6 +37,18 @@ w_arr = np.array([[0,  1,  1,  1,  1,  1], # 0
 #                   [1, -2, 0, -2], # 2 
 #                   [1, -2, -2, 0]
 #                   ])# 3
+
+x_arr = np.array([1, 1, 1, 1, 1, 1, 1, 1])
+
+w_arr = np.array([[0,  -1,  -1,  -1,  -1,  -1,  -1,  -1], # 0 
+                  [-1,  0, -2, -3, -4, -2, -3, -4], # 1
+                  [-1, -2,  0, -4, -5, -6, -1, -2], # 2 
+                  [-1, -3, -4,  0, -1, -2, -3, -4],
+                  [-1, -4, -5, -1,  0, -1, -2, -3],
+                  [-1, -2, -6, -2, -1,  0, -1, -2],
+                  [-1, -3, -1,  3, -2, -1,  0, -1],
+                  [-1, -4, -2,  4, -3, -2, -1,  0]
+                  ])# 
 
 test_list = []
 for i in range(copies):
@@ -107,9 +119,10 @@ for i in range(1, row):
     diff_tab[i-1] = diff/2
 plt.figure()
 plt.xlabel('Trials')
-plt.ylabel('The changing of neurons')
-plt.suptitle('The changing of neurons in each trail when gain(a) is {}'.format(a))
+plt.ylabel('The number of copy')
+plt.suptitle('The number of copy changing their state in each trail when gain(a) is {}'.format(a))
 plt.bar(np.arange(1,trials,1), diff_tab)
+plt.savefig('task4_equi_{}.png'.format(a))
 ######################################
 #######         TASK 4         #######
 ################ END! ################
