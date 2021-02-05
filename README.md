@@ -7,13 +7,13 @@ This report is created for TAIST Artificial Intelligence Course taught by [Prof.
 | Name | Description | Example |
 | ---- | ----------- | ----- |
 | a | Gain of the sigmoid function | 0.2, 0.5, 1, 5, 10 |
-| Trials | Repeatly execute the neuron with x rounds | 100, 1000, 10000 |
+| Trials | Repeatedly execute the neuron with x rounds | 100, 1000, 10000 |
 | Copies | Number of a copy of the RNN | 100, 1000, 10000 |
 | RAND_MAX | Maximum range of a random generator for all tasks | RAND_MAX = 10000 |
 | SEED | Seed of a random generator for all tasks | SEED = 0 |
 | Input(x) | Input or initial state of a neuron | x = [1, 0, 1, -1, 0.5, -0.5] |
 | State(x) | State of each neuron after updating | x = [1, 1, 0, 0, 1] |
-| Convergent state(x) | State that the RNN stops changing the state. This situation will occurs when the RNN using deterministic model only. | x = [1, 1, 0, 0, 1] |
+| Convergent state(x) | State that the RNN stops changing the state. This situation will occurs when the RNN using a deterministic model only. | x = [1, 1, 0, 0, 1] |
 | Weight(w) | Weight of a neuron | w = [1, -1, 2, -1, 2, -1] |
 | Dummy | Threshold of a neuron which describe as w and x[0] = 1 | x[0] = 1, w[0][1] = 1 |
 
@@ -23,15 +23,15 @@ This report is created for TAIST Artificial Intelligence Course taught by [Prof.
 [Source code](code/task1.py)  
 Procedure  
 1. Create a neuron which has 5 inputs with a probabilistic Binary Model (Using random generator to create probabilistic model).
-1. Repeatdly execute the neuron with parameters defined in table.
+1. Repeatedly execute the neuron with parameters defined in table.
 1. Count when `y = 1` for the experimental result.
-1. Calculate the theoritical result by ` Trials * P`.
-1. Calculate a ⭐percent error(pe) between the experimental result and the theritical result.
+1. Calculate the theoretical result by ` Trials * P`.
+1. Calculate a ⭐percent error(pe) between the experimental result and the theoretical result.
 1. Calculate a ⭐average of percent error(mean) from each trail.
 ```py
 # ⭐How to get percent error and average
 # Percent error can be positive or negative to show more or less of result
-pe = ((theoritical-experimental)/th)*100 
+pe = ((theoretical-experimental)/th)*100 
 # Mean is calculated from absolute values to show only a margin of result
 mean = statistics.mean([abs(pe_100), abs(pe_1000), abs(pe_10000)]) 
 ```
@@ -110,7 +110,7 @@ Procedure
 ### 
 
 ### **2.1. Compute the convergent state of neurons**
-Set the gain to a large number, so the model will be deterministic. Repeatdly update each neuron until reach the convergent state.  
+Set the gain to a large number, so the model will be deterministic. Repeatedly update each neuron until reach the convergent state.  
 **Constant Parameters**
 | weight(x) | Gain(a) |
 | :-------:|:----: |
@@ -182,7 +182,7 @@ Procedure
 1. Make a copy of RNN
 1. Update the state of neuron 1 by 1 for each copy
 1. The experimental result: Collect the number of copies in each state
-1. The theoritical result: Caculate follows Boltzman's distribution for all possible states.
+1. The theoretical result: Caculate follows Boltzman's distribution for all possible states.
 
 #### **Constant Parameters**
 | Input(x) | weight(w) |
@@ -195,7 +195,7 @@ Procedure
 | # of Trials | # of Copies | Gain(a) | Energy table
 | :---- | :------- | :------- | :----: |
 | 1000 | 1000 | 0.5 |![task4_1000x1000_table](images/task4_1000x1000_table.jpg) 
-#### ***<p align="center">Distribution graph: To compare the theoritical and the experimental result</p>***
+#### ***<p align="center">Distribution graph: To compare the theoretical and the experimental result</p>***
 
 | # of Trials | # of Copies | Gain(a) | Distribution graph
 | :---- | :------- | :------- | :----: |
@@ -214,7 +214,7 @@ Procedure
 <p align='center'><img src="images/task4_100x1000_user_table.PNG" /></p>
 
 #### **Summary**
-As the result, the experimental result and the theroetical result is going to the same way. When we increase the number of copies, the result is more closer. The increasing of the number of trials also effects the result, but it not that much.  
+As the result, the experimental result and the theoretical result is going to the same way. When we increase the number of copies, the result is more closer. The increasing of the number of trials also effects the result, but it not that much.  
 The Changing of gain also effects to the result. The more gain makes the result closer, but the distribution of result will be decreased.  
 For my opinion, the most suitable parameters is ``` Trials = 1000, Copies = 1000, Gain = 0.5```  
 As the result of energy, the most of experimental result will have the lowest energy. Thus, we can predict the equilibrium state from an energy. If the energy is low, it is more likely to be equilibrium state.
@@ -223,7 +223,7 @@ As the result of energy, the most of experimental result will have the lowest en
 1. Make a copy of RNN.
 1. Update the state of neuron 1 by 1 for each copy.
 1. Collect the state of each copy.
-1. Repeatdly update until the major copies stop to change their state.
+1. Repeatedly update until the major copies stop to change their state.
 
 #### **Constant Parameters**
 | Input(x) | weight(w) | # of Trials | # of Copies |
@@ -247,9 +247,9 @@ The increasing of gain makes copies less state change.
 ## **Task 5.1 - Ergodicity**
 Due to the Gibbs copies method consumes a lot of memory, Ergodicity has been publish. We can use a time series of states generated by a single RNN, instead of the states of Gibbs copies.  
 Procedure
-1. Ergodicity result: Make 1 RNN and repeatdly update and collect the state of RNN in each time
+1. Ergodicity result: Make 1 RNN and repeatedly update and collect the state of RNN in each time
 1. Experimental result(Gibbs copies): Use Gibbs copies RNN from task 4
-1. Compare result: the theoritical result vs the experimental result vs the Ergodicity result
+1. Compare result: the theoretical result vs the experimental result vs the Ergodicity result
 [Source code](code/task5.py)
 
 ### *Adjust Gain: To check the result of Ergodicity when gain is changed*
@@ -260,7 +260,7 @@ Procedure
 |<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> | 1000 | 1000
 
 #### **Test Results**
-| Gain(a) | the theoritical result vs the experimental result vs the Ergodicity result |
+| Gain(a) | the theoretical result vs the experimental result vs the Ergodicity result |
 | :---- | :-------: |
 | 0.1 | ![task5_ergo_0.1](images/task5_ergo_0.1.png)
 | 0.5 | ![task5_ergo_0.5](images/task5_ergo_0.5.png)
@@ -275,15 +275,15 @@ Procedure
 |<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> | 0.5
 
 #### **Test Results**
-| # of Trials | # of copies | the theoritical result vs the experimental result vs the Ergodicity result |
+| # of Trials | # of copies | the theoretical result vs the experimental result vs the Ergodicity result |
 | :---- | :-------: | :---: |
 | 100 | 100 |![task5_ergo_trial100](images/task5_ergo_trial100.png)
 | 1000 | 1000 |![task5_ergo_trial1000](images/task5_ergo_trial1000.png)
 | 10000 | 10000 |![task5_ergo_trial10000](images/task5_ergo_trial10000.png)
 
 #### **Summary**
-As the result, the ergodicity can be replaced the Gibbs copies if we have a good parameter tuning.  
-For the Gain tuning, the lower gain makes the oscillated result, so 3 results are going to different ways. The more gain makes the result too determined. As we can see, when the gain is 5, only the ergodicity result is not compatible. The suitable gain should be 0.5  
+As the result, the Ergodicity can be replaced the Gibbs copies if we have a good parameter tuning.  
+For the Gain tuning, the lower gain makes the oscillated result, so 3 results are going to different ways. The more gain makes the result too determined. As we can see, when the gain is 5, only the Ergodicity result is not compatible. The suitable gain should be 0.5  
 For trials and copies tuning, the higher number makes the result better.
 
 ## **Task 5.1 - Application**
@@ -298,7 +298,7 @@ Procedure
 1. Get all weight and theta values from standard equation. Don't forget Wnm = Wmn, so the weight array need to be adjusted.  
 <img src="images/task5_w.png" width="300">
 1. Create the RNN with this weight.
-1. Repeatdly update. The most frequently appeared state is the solution
+1. Repeatedly update. The most frequently appeared state is the solution
 
 [Source code](code/task5.py)
 
@@ -313,8 +313,8 @@ Procedure
 | 1.0 | ↑ | <img src="images/task5_equa_tab_10.jpg" width="300"> | <img src="images/task5_equation_a1.0.png" width="300">
 
 #### **Summary**
-As the result, we can use the RNN method to find the solution of the simultaneius equation. All of method whether a theoritical, Gibbs copies, Ergodicity can get the correct result. The more gain makes more confident of the result, but we can get the correct result from all gains.
+As the result, we can use the RNN method to find the solution of the simultaneous equation. All of method whether a theoretical, Gibbs copies, Ergodicity can get the correct result. The more gain makes more confident of the result, but we can get the correct result from all gains.
 
 ---
 ## **Author**
-Nithid Mahattanasin 6314552753 student of TAIST AI&IoT (ICTES) course 2020, Kasetsart University
+Nithid Mahattanasin 6314552737 student of TAIST AI&IoT (ICTES) course 2020, Kasetsart University
