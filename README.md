@@ -111,11 +111,15 @@ Procedure
 
 ### **2.1. Compute the convergent state of neurons**
 Set the gain to a large number, so the model will be deterministic. Repeatedly update each neuron until reach the convergent state.  
+
 **Constant Parameters**
+
 | weight(x) | Gain(a) |
 | :-------:|:----: |
 |<pre>[0,  1,  1,  1], #0<br/>[0,  0, -2, -2], #1<br/>[0, -2,  0, -2], #2<br/>[0, -2, -2,  0]  #3</pre>| 1000 |
+
 **Test Results**
+
 | Input(x) | Convergent state(x) |
 | :----: | :-------:|:----: | :-----: |
 |<pre>[1, 0, 0, 0]</pre>| <pre>[1, 1, 0, 0]</pre> |
@@ -124,12 +128,16 @@ Set the gain to a large number, so the model will be deterministic. Repeatedly u
 ⭐x[0], w[0] is dummy
 
 ### **2.2. Try with different gain**
-Change the gain and see what happen
+Change the gain and see what happen  
+
 **Constant Parameters**
+
 | Input(x) | weight(x) |
 | :----: | :-------:|
 |<pre>[1, 0, 0, 0]</pre>|<pre>[0,  1,  1,  1], #0<br/>[0,  0, -2, -2], #1<br/>[0, -2,  0, -2], #2<br/>[0, -2, -2,  0]  #3</pre>|
+
 **Test Results**
+
 | Gain(a) | The most existing state (x) | Graph |
 |:----: | :-----: | :----: |
 | 0.2 | <pre>[1, 1, 0, 0]</pre> |![task2_a02](images/task2_a02.png)|
