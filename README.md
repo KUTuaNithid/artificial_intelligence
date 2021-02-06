@@ -224,7 +224,7 @@ Procedure
 | :---- | :------- | :------- | :----: | :----: |
 | 100 | 1000 | 0.5 |![task4_histo__tri100_Cop1000_a0.5_user](images/task4_histo__tri100_Cop1000_a0.5_user.png) |![task4_compare_tri100_Cop1000_a0.5_user](images/task4_compare_tri100_Cop1000_a0.5_user.png) 
 
-<p align='center'><img src="images/task4_100x1000_user_table.PNG"></p>
+<p align='center'><img src="images/task4_100x1000_user_table.png"></p>
 
 #### **Summary**
 As the result, the experimental result and the theoretical result is going to the same way. When we increase the number of copies, the result is more closer. The increasing of the number of trials also effects the result, but it not that much.  
