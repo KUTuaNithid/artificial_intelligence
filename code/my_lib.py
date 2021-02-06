@@ -16,7 +16,8 @@ import statistics
 RAND_MAX = 10000
 SEED = 0
 random.seed(SEED)
-
+def boltzMan(A, gain, energy):
+    return A*np.exp(-1*gain*energy)
 def my_sigmoid(s, a):
     # Sigmoid function, to nomalize result to 0, 1
     # P = 1 / (1 + e^-ax)
@@ -143,7 +144,6 @@ class my_rnn:
             res = res + (x_arr[i]<<(n-i))
 
         return res
-
     def get_BoltzTheo(self, energy_tab, gain, copies):
         # Get A
         # A = copies/ sum(e^(gain*all_energy))
@@ -153,9 +153,9 @@ class my_rnn:
         A = copies/s
         thero_tab = []
         for energy in energy_tab:
-            thero_tab.append(A*np.exp(-1*gain*energy))
+            thero_tab.append(boltzMan(A, gain, energy))
 
-        return thero_tab
+        return thero_tab, A
 
     def report_mornitor(self, morn_tab, n):
         header = ["{0:b}".format(i).zfill(n) for i in range(pow(2,n))]
@@ -190,14 +190,14 @@ class my_rnn:
 
     def report_energy(self, energy_tab, freq_tab, n, gain, copies):
         # Compare theritical(Boltzman) vs Experimental
-        thero_tab = self.get_BoltzTheo(energy_tab, gain, copies)
+        thero_tab, A = self.get_BoltzTheo(energy_tab, gain, copies)
         res = {'Neurons': ["{0:b}".format(i).zfill(n) for i in range(pow(2,n))],
         'Energy': energy_tab, 'Theoretical': thero_tab, 'Experimental': freq_tab
         }
         df = pd.DataFrame(res, columns = ['Neurons', 'Energy', 'Theoretical', 'Experimental'])
         # pd.options.display.float_format = "{:,.2f}".format
         print(df)
-        return df
+        return df, A
         # df = pd.DataFrame(energy_tab, columns = header)
     
     def report_gibb_vs_ergo(self, energy_tab, freq_tab, ergo_freq_tab, n, gain, copies):
