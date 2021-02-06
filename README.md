@@ -166,7 +166,7 @@ Procedure
 |<pre>[1, 1, 1, 1, 1, 1]</pre>|<font size="2"><pre>[0, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-2,-2,-2],#1<br/>[1,-2, 0,-2,-2,-2],#2<br/>[1,-2,-2, 0,-2,-2],#3<br/>[1,-2,-2,-2, 0,-2],#4<br/>[1,-2,-2,-2,-2, 0] #5<br/></pre></font>| <pre>[1, 0, 0, 0, 0, 1]</pre> | 
 
 ##### <p align='center'>Energy of the RNN in each updating</p> 
-<p align='center'><img src="images/task3_1enetab.PNG" width="200"></p>
+<p align='center'><img src="images/task3_1enetab.PNG" width="300"></p>
 
 
 #### *<p align='center'> Author's defined RNN </p>*
@@ -175,7 +175,7 @@ Procedure
 |<font size="1"><pre>[1, 1, 1, 1, 1, 1, 1, 1]</pre></font> |<font size="1"><pre>[0, 1, 1, 1, 1, 1, 1, 1],#0<br/>[1, 0,-2,-3,-4,-2,-3,-4],#1<br/>[1,-2, 0,-4,-5,-6,-1,-2],#2<br/>[1,-3,-4, 0,-1,-2,-3,-4],#3<br/>[1,-4,-5,-1, 0,-1,-2,-3],#4<br/>[1,-2,-6,-2,-1, 0,-1,-2],#5<br/>[1,-3,-1, 3,-2,-1, 0,-1],#6<br/>[1,-4,-2, 4,-3,-2,-1, 0] #7</pre></font> | <font size="1"><pre>[1, 0, 0, 1, 1, 0, 0, 0]</pre></font> |
 
 ##### <p align='center'>Energy of the RNN in each updating</p> 
-<p align='center'><img src="images/task3_2enetab.PNG" width="200"></p>
+<p align='center'><img src="images/task3_2enetab.PNG" width="350"></p>
 
 #### **Summary**
 As the result, the energy of RNN always decreases when the neuron updates its state. The convergence state will has a minimum energy. 
@@ -202,7 +202,7 @@ Procedure
 
 | # of Trials | # of Copies | Gain(a) | Energy table
 | :---- | :------- | :------- | :----: |
-| 1000 | 1000 | 0.5 |<img src="images/task4_1000x1000_table.jpg" width="200"> |
+| 1000 | 1000 | 0.5 |<img src="images/task4_1000x1000_table.jpg" width="350"> |
 #### ***<p align="center">Comparing graph: To compare the theoretical and the experimental result</p>***
 
 ##### **Adjust Trials and Copies**
@@ -224,7 +224,7 @@ Procedure
 | :---- | :------- | :------- | :----: | :----: |
 | 100 | 1000 | 0.5 |![task4_histo__tri100_Cop1000_a0.5_user](images/task4_histo__tri100_Cop1000_a0.5_user.png) |![task4_compare_tri100_Cop1000_a0.5_user](images/task4_compare_tri100_Cop1000_a0.5_user.png) 
 
-<p align='center'><img src="images/task4_100x1000_user_table.PNG" /></p>
+<p align='center'><img src="images/task4_100x1000_user_table.PNG"></p>
 
 #### **Summary**
 As the result, the experimental result and the theoretical result is going to the same way. When we increase the number of copies, the result is more closer. The increasing of the number of trials also effects the result, but it not that much.  
