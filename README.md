@@ -308,7 +308,7 @@ Procedure
 | 10000 | 10000 |![task5_ergo_trial10000](images/task5_ergo_trial10000.png)
 
 #### **Summary**
-As the result, the Ergodicity can be replaced the Gibbs copies if we have a good parameter tuning.  
+As the result, the Ergodicity can replace the Gibbs copies method if we have a good parameter tuning.  
 For the Gain tuning, the lower gain makes the oscillated result, so 3 results are going to different ways. The more gain makes the result too determined. As we can see, when the gain is 5, only the Ergodicity result is not compatible. The suitable gain should be 0.5  
 For trials and copies tuning, the higher number makes the result better.
 
