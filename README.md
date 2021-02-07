@@ -7,15 +7,15 @@ This report is created for TAIST Artificial Intelligence Course taught by [Prof.
 | Name | Description | Example |
 | ---- | ----------- | ----- |
 | a | Gain of the sigmoid function | 0.2, 0.5, 1, 5, 10 |
-| Trials | Repeatedly execute the neuron with x rounds | 100, 1000, 10000 |
-| Copies | Number of a copy of the RNN | 100, 1000, 10000 |
+| Trials | The number of updating neuron | 100, 1000, 10000 |
+| Copies | Number of copies of the RNN | 100, 1000, 10000 |
 | RAND_MAX | Maximum range of a random generator for all tasks | RAND_MAX = 10000 |
 | SEED | Seed of a random generator for all tasks | SEED = 0 |
 | Input(x) | Input or initial state of a neuron | x = [1, 0, 1, -1, 0.5, -0.5] |
 | State(x) | State of each neuron after updating | x = [1, 1, 0, 0, 1] |
 | Convergent state(x) | State that the RNN stops changing the state. This situation will occurs when the RNN using a deterministic model only. | x = [1, 1, 0, 0, 1] |
-| Weight(w) | Weight of a neuron | w = [1, -1, 2, -1, 2, -1] |
-| Dummy | Threshold of a neuron which describe as w and x[0] = 1 | x[0] = 1, w[0][1] = 1 |
+| Weight(w) | Weight of neurons | w = [1, -1, 2, -1, 2, -1] |
+| Dummy | Threshold of neurons which describe as w and x[0] = 1 | x[0] = 1, w[0][1] = 1 |
 
 ## **Task 1 - Simulation of Probabilistic Binary Model**
 
@@ -25,11 +25,11 @@ Procedure
 1. Create a neuron which has 5 inputs with a probabilistic Binary Model (Using random generator to create probabilistic model).
 1. Repeatedly execute the neuron with parameters defined in table.
 1. Count when `y = 1` for the experimental result.
-1. Calculate the theoretical result by ` Trials * P`.
+1. Calculate the theoretical result by `Trials * P`.
 1. Calculate a ⭐percent error(pe) between the experimental result and the theoretical result.
 1. Calculate a ⭐average of percent error(mean) from each trail.
 ```py
-# ⭐How to get percent error and average
+# ⭐How to get percent error and mean 
 # Percent error can be positive or negative to show more or less of result
 pe = ((theoretical-experimental)/th)*100 
 # Mean is calculated from absolute values to show only a margin of result
@@ -43,6 +43,7 @@ mean = statistics.mean([abs(pe_100), abs(pe_1000), abs(pe_10000)])
 | Input(x) | Weight(w) |
 | :---: | :---: |
 | <pre>x1 = [1, 0, 1, -1, 0.5, -0.5]</pre> | <pre>w = [1, -1, 2, -1, 2, -1]</pre> |
+
 **Test Results**
 | Gain(a) | Trials | Percent error | Average percent error of 3 Trials |
 |--|--|--|--|
@@ -70,6 +71,7 @@ mean = statistics.mean([abs(pe_100), abs(pe_1000), abs(pe_10000)])
 | Input(x) | Weight(w) |
 | :---: | :---: |
 | <pre>x2 = [1, -1, 1, 1, -0.5, 1]</pre> | <pre>w = [1, -1, 2, -1, 2, -1]</pre> |
+
 **Test Results**
 | Gain(a) | Trials | Percent error | Average percent error of 3 Trials |
 |--|--|--|--|
