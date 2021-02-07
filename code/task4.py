@@ -14,7 +14,7 @@ from my_lib import *
 trials = 100
 copies = 1000
 a = 0.5
-x_arr = np.array([1, 1, 1, 1, 1, 1])
+# x_arr = np.array([1, 1, 1, 1, 1, 1])
 
 # w_arr = np.array([[0, 0.5, 0.5, 0.5, 0.5, 0.5], # 0 
 #                   [0.5, 0, -2, -2, -2, -2], # 1
@@ -23,13 +23,13 @@ x_arr = np.array([1, 1, 1, 1, 1, 1])
 #                   [0.5, -2, -2, -2, 0, -2],
 #                   [0.5, -2, -2, -2, -2, 0]
 #                   ])# 3
-w_arr = np.array([[0,  1,  1,  1,  1,  1], # 0 
-                  [1,  0, -2, -2, -2, -2], # 1
-                  [1, -2,  0, -2, -2, -2], # 2 
-                  [1, -2, -2,  0, -2, -2],
-                  [1, -2, -2, -2,  0, -2],
-                  [1, -2, -2, -2, -2,  0]
-                  ])
+# w_arr = np.array([[0,  1,  1,  1,  1,  1], # 0 
+#                   [1,  0, -2, -2, -2, -2], # 1
+#                   [1, -2,  0, -2, -2, -2], # 2 
+#                   [1, -2, -2,  0, -2, -2],
+#                   [1, -2, -2, -2,  0, -2],
+#                   [1, -2, -2, -2, -2,  0]
+#                   ])
 # x_arr = np.array([1, 1, 1, 1])
 
 # w_arr = np.array([[0, 1, 1, 1], # 0 
@@ -38,17 +38,17 @@ w_arr = np.array([[0,  1,  1,  1,  1,  1], # 0
 #                   [1, -2, -2, 0]
 #                   ])# 3
 
-# x_arr = np.array([1, 1, 1, 1, 1, 1, 1, 1])
+x_arr = np.array([1, 1, 1, 1, 1, 1, 1, 1])
 
-# w_arr = np.array([[0,  -1,  -1,  -1,  -1,  -1,  -1,  -1], # 0 
-#                   [-1,  0, -2, -3, -4, -2, -3, -4], # 1
-#                   [-1, -2,  0, -4, -5, -6, -1, -2], # 2 
-#                   [-1, -3, -4,  0, -1, -2, -3, -4],
-#                   [-1, -4, -5, -1,  0, -1, -2, -3],
-#                   [-1, -2, -6, -2, -1,  0, -1, -2],
-#                   [-1, -3, -1,  3, -2, -1,  0, -1],
-#                   [-1, -4, -2,  4, -3, -2, -1,  0]
-#                   ])# 
+w_arr = np.array([[0,  -1,  -1,  -1,  -1,  -1,  -1,  -1], # 0 
+                  [-1,  0, -2, -3, -4, -2, -3, -4], # 1
+                  [-1, -2,  0, -4, -5, -6, -1, -2], # 2 
+                  [-1, -3, -4,  0, -1, -2, -3, -4],
+                  [-1, -4, -5, -1,  0, -1, -2, -3],
+                  [-1, -2, -6, -2, -1,  0, -1, -2],
+                  [-1, -3, -1,  3, -2, -1,  0, -1],
+                  [-1, -4, -2,  4, -3, -2, -1,  0]
+                  ])# 
 
 test_list = []
 for i in range(copies):
@@ -102,7 +102,7 @@ for test in test_list:
 #     freq_tab[test.get_result(test.x_arr,test.n)] += 1
 
 df, A = test_list[0].report_energy(energy_tab, freq_tab, test_list[0].n, a, copies)
-E = np.arange(df['Energy'].min(), df['Energy'].max()+0.5, 1)
+E = np.arange(df['Energy'].min(), df['Energy'].max()+1, 0.5)
 N = boltzMan(A, a, E)
 
 # Plot Comparision graph
@@ -113,31 +113,50 @@ ax.set_xlabel("State(decimal)")
 ax.set_ylabel("Number of copy")
 plt.savefig('task4_compare_tri{}_Cop{}_a{}.png'.format(trials, copies, a))
 
-from scipy.interpolate import interp1d
-from scipy import interpolate
+
+
 # Plot histogram graph
+# Ignore state that has same energy
+mean = df.groupby(['Energy']).mean()
+plt.figure()
+mean.plot()
+
 # All data that have same energy
 all_th_ex = df.groupby(['Energy']).sum()
 plt.figure()
-ax = all_th_ex.plot(kind='bar')
+
+
+# from scipy import interpolate
+# from scipy.interpolate import interp1d
+# f1 = interp1d(all_th_ex.index, all_th_ex['Theoretical'],kind='linear')
+# df2 = pd.DataFrame()
+# new_index = np.arange(all_th_ex.index.min(),all_th_ex.index.max()+1)
+# df2['Theoretical'] = f1(new_index)
+
+# df2.index = new_index
+# ax2 = df2.plot(kind='bar')
+# df2.plot(ax=ax2)
+# ax = all_th_ex.plot(kind='bar')
+# all_th_ex.plot(ax = ax)
+
+new = all_th_ex.reindex(range(int(all_th_ex.index.min()),int(all_th_ex.index.max()+1)), fill_value=0)
+new.plot(kind='bar')
 ax.set_xlabel("Energy")
 ax.set_ylabel("Number of copy")
 
-th = interpolate.splev(all_th_ex.index, all_th_ex['Theoretical'])
-
-df2 = pd.DataFrame()
-new_index = np.arange(all_th_ex.index.min(),all_th_ex.index.max())
-df2['Theoretical'] = th(new_index)
-df2.index = new_index
-df2.plot.line()
-
-
-
-all_th_ex.plot(xlim=(all_th_ex.index.min(), all_th_ex.index.max()))
 plt.savefig('task4_histo__tri{}_Cop{}_a{}.png'.format(trials, copies, a))
 
 plt.figure()
+ax2=all_th_ex.plot(xlim=(all_th_ex.index.min(), all_th_ex.index.max()))
+ax2.set_xlabel("Energy")
+ax2.set_ylabel("Number of copy")
+plt.savefig('task4_histo_graph_tri{}_Cop{}_a{}.png'.format(trials, copies, a))
+
+plt.figure()
 plt.plot(E, N)
+plt.suptitle('Boltzman Distribution Graph (A*exp(-aE))')
+plt.xlabel('Energy')
+plt.ylabel('The number of copy')
 
 
 morn_df = test_list[0].report_mornitor(mornitor_tab, test_list[0].n)

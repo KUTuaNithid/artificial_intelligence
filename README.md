@@ -181,7 +181,7 @@ Procedure
 As the result, the energy of RNN always decreases when the neuron updates its state. The convergence state will has a minimum energy. 
 
 ## **Task 4 - RNNs with Boltzmann's Distribution**
-[Boltzmann's Distribution](https://en.wikipedia.org/wiki/Boltzmann_distribution) is can be used measure the number of molecules that have their energy between some amounts of energy. This distribution can be applied to many things included RNN. Gibbs copies is the technique to makes copies of the same RNN.
+[Boltzmann's Distribution](https://en.wikipedia.org/wiki/Boltzmann_distribution) is can be used to measure the number of molecules that have their energy between some amounts of energy. This distribution can be applied to many things included RNN. Gibbs copies is the technique to makes copies of the same RNN.
 ![task4_detail](images/task4_detail.jpg)  
 [Source code](code/task4.py)
 
@@ -190,44 +190,55 @@ Procedure
 1. Make a copy of RNN
 1. Update the state of neuron 1 by 1 for each copy
 1. The experimental result: Collect the number of copies in each state
-1. The theoretical result: Caculate follows Boltzman's distribution for all possible states.
+1. The theoretical result: Calculate follows Boltzman's distribution for all possible states.
 
 #### **Constant Parameters**
 | Input(x) | weight(w) |
 | :----: | :-------|
 |<font size="2"><pre>[1, 1, 1, 1, 1, 1]</pre></font> |<font size="2"><pre>[0,  1,  1,  1,  1,  1],#0<br/>[1,  0, -2, -2, -2, -2],#1<br/>[1, -2,  0, -2, -2, -2],#2<br/>[1, -2, -2,  0, -2, -2],#3<br/>[1, -2, -2, -2,  0, -2],#4<br/>[1, -2, -2, -2, -2,  0] #5</pre></font> |
 
+#### ***<p align="center">Energy table</p>***
+We compute the energy of the RNN in each state and show in this table. After update all of RNNs for many times, we check state of all copies and show in this table, so we can know that how many copies in each state.
 #### **Test Results**
-#### ***<p align="center">Energy table: To shows the energy in each state</p>***
-
 | # of Trials | # of Copies | Gain(a) | Energy table
 | :---- | :------- | :------- | :----: |
 | 1000 | 1000 | 0.5 |<img src="images/task4_1000x1000_table.jpg" width="350"> |
-#### ***<p align="center">Comparing graph: To compare the theoretical and the experimental result</p>***
-
+#### ***<p align="center">Distribution graph</p>***
+This graph is to check the distribution of the number of copies that have their energy in some amounts of energy. From the Boltzmann's theory, the distribution should follows `A*exp(-aE)` which show in the figture below.  
+<img src="images/task4_Boltzman_base.png" width="300">
+#### **Test Results**
 ##### **Adjust Trials and Copies**
-| # of Trials | # of Copies | Gain(a) | Histogram of energy | Comparison graph
-| :---- | :------- | :-------: | :----: | :----: |
-| 100 | 100 | 0.5 | ![task4_histo__tri100_Cop100_a0.5](images/task4_histo__tri100_Cop100_a0.5.png) | ![task4_compare_tri100_Cop100_a0.5](images/task4_compare_tri100_Cop100_a0.5.png) 
-| 100 | 1000 | 0.5 |![task4_histo__tri100_Cop1000_a0.5](images/task4_histo__tri100_Cop1000_a0.5.png) | ![task4_compare_tri100_Cop1000_a0.5](images/task4_compare_tri100_Cop1000_a0.5.png) 
-| 1000 | 1000 | 0.5 |![task4_histo__tri1000_Cop1000_a0.5](images/task4_histo__tri1000_Cop1000_a0.5.png) | ![task4_compare_tri1000_Cop1000_a0.5](images/task4_compare_tri1000_Cop1000_a0.5.png)
+| Distribution of energy (graph) | Distribution of energy (Histogram)  | The number of a copy in each state
+| :---- | :------- | :-------: |
+|Trials = 100, Copies =  100, Gain(a) = 0.5| | |
+| ![task4_histo_graph_tri100_Cop100_a0.5](images/task4_histo_graph_tri100_Cop100_a0.5.png) | ![task4_histo__tri100_Cop100_a0.5](images/task4_histo__tri100_Cop100_a0.5.png) | ![task4_compare_tri100_Cop100_a0.5](images/task4_compare_tri100_Cop100_a0.5.png) 
+|Trials = 100, Copies = 1000, Gain(a) = 0.5| | |
+| ![task4_histo_graph_tri100_Cop1000_a0.5](images/task4_histo_graph_tri100_Cop1000_a0.5.png)  |![task4_histo__tri100_Cop1000_a0.5](images/task4_histo__tri100_Cop1000_a0.5.png) | ![task4_compare_tri100_Cop1000_a0.5](images/task4_compare_tri100_Cop1000_a0.5.png) 
+|Trials = 1000, Copies = 1000, Gain(a) = 0.5| | |
+| ![task4_histo_graph_tri1000_Cop1000_a0.5](images/task4_histo_graph_tri1000_Cop1000_a0.5.png) |![task4_histo__tri1000_Cop1000_a0.5](images/task4_histo__tri1000_Cop1000_a0.5.png) | ![task4_compare_tri1000_Cop1000_a0.5](images/task4_compare_tri1000_Cop1000_a0.5.png)
 
 ##### **Adjust gain**
-| # of Trials | # of Copies | Gain(a) | Histogram of energy | Comparison graph
-| :---- | :------- | :-------: | :----: | :----: |
-| 1000 | 1000 | 0.2 |![task4_histo__tri1000_Cop1000_a0.2](images/task4_histo__tri1000_Cop1000_a0.2.png) | ![task4_compare_tri1000_Cop1000_a0.2](images/task4_compare_tri1000_Cop1000_a0.2.png) 
-| 1000 | 1000 | 1.0 |![task4_histo__tri1000_Cop1000_a1.0](images/task4_histo__tri1000_Cop1000_a1.0.png) | ![task4_compare_tri1000_Cop1000_a1.0](images/task4_compare_tri1000_Cop1000_a1.0.png) 
-| 1000 | 1000 | 1.5 |![task4_histo__tri1000_Cop1000_a1.5](images/task4_histo__tri1000_Cop1000_a1.5.png) | ![task4_compare_tri1000_Cop1000_a1.5](images/task4_compare_tri1000_Cop1000_a1.5.png)
+| Distribution of energy (graph) | Distribution of energy (Histogram)  | The number of a copy in each state
+| :---- | :------- | :-------: |
+|Trials = 1000, Copies =  1000, Gain(a) = 0.2| | |
+| ![task4_histo_graph_tri1000_Cop1000_a0.2](images/task4_histo_graph_tri1000_Cop1000_a0.2.png) | ![task4_histo__tri1000_Cop1000_a0.2](images/task4_histo__tri1000_Cop1000_a0.2.png) | ![task4_compare_tri1000_Cop1000_a0.2](images/task4_compare_tri1000_Cop1000_a0.2.png) 
+|Trials = 1000, Copies = 1000, Gain(a) = 1.0| | |
+| ![task4_histo_graph_tri1000_Cop1000_a1.0](images/task4_histo_graph_tri1000_Cop1000_a1.0.png)  |![task4_histo__tri1000_Cop1000_a1.0](images/task4_histo__tri1000_Cop1000_a1.0.png) | ![task4_compare_tri1000_Cop1000_a1.0](images/task4_compare_tri1000_Cop1000_a1.0.png) 
+|Trials = 1000, Copies = 1000, Gain(a) = 1.5| | |
+| ![task4_histo_graph_tri1000_Cop1000_a1.5](images/task4_histo_graph_tri1000_Cop1000_a1.5.png) |![task4_histo__tri1000_Cop1000_a1.5](images/task4_histo__tri1000_Cop1000_a1.5.png) | ![task4_compare_tri1000_Cop1000_a1.5](images/task4_compare_tri1000_Cop1000_a1.5.png)
 
 #### ***<p align="center">Try with author's RNN defined in Task 3</p>***
-| # of Trials | # of Copies | Gain(a) | Histogram of energy | Comparison graph
-| :---- | :------- | :------- | :----: | :----: |
-| 100 | 1000 | 0.5 |![task4_histo__tri100_Cop1000_a0.5_user](images/task4_histo__tri100_Cop1000_a0.5_user.png) |![task4_compare_tri100_Cop1000_a0.5_user](images/task4_compare_tri100_Cop1000_a0.5_user.png) 
+| Distribution of energy (graph) | Distribution of energy (Histogram)  | The number of a copy in each state
+| :---- | :------- | :-------: |
+|Trials = 100, Copies =  1000, Gain(a) = 0.5| | |
+| ![task4_histo_graph_tri100_Cop1000_a0.5_user](images/task4_histo_graph_tri100_Cop1000_a0.5_user.png) |![task4_histo__tri100_Cop1000_a0.5_user](images/task4_histo__tri100_Cop1000_a0.5_user.png) |![task4_compare_tri100_Cop1000_a0.5_user](images/task4_compare_tri100_Cop1000_a0.5_user.png) 
 
 <p align='center'><img src="images/task4_100x1000_user_table.png"></p>
 
 #### **Summary**
-As the result, the experimental result and the theoretical result is going to the same way. When we increase the number of copies, the result is more closer. The increasing of the number of trials also effects the result, but it not that much.  
+From the distribution of a energy graph, when the gain is small number, the result is different from `A*exp(-aE)` graph. The test results are less number of copies in the beginning. From the energy table, the lowest energy (-1.0) will has the most number of copies, but the state that has this energy is not enough, so the number of copies in these amounts of energy are not maximum. If we check only the number of copies in energy by ignore the state that has same energy, then the result from testing will follow `A*exp(-aE)` as shown in the figure below.  In the other hand, if the gain is large number, the result is nearly to `A*exp(-aE)`  
+<img src="images/task4_distri_mean.png" width="250">   
+The experimental result and the theoretical result is going to the same way. When we increase the number of copies, the result is more closer. The increasing of the number of trials also effects the result, but it not that much.  
 The Changing of gain also effects to the result. The more gain makes the result closer, but the distribution of result will be decreased.  
 For my opinion, the most suitable parameters is ``` Trials = 1000, Copies = 1000, Gain = 0.5```  
 As the result of energy, the most of experimental result will have the lowest energy. Thus, we can predict the equilibrium state from an energy. If the energy is low, it is more likely to be equilibrium state.
@@ -251,7 +262,7 @@ As the result of energy, the most of experimental result will have the lowest en
 | 1.0 | ![task4_equi_10_TAB](images/task4_equi_10_TAB.png) | ![task4_equi_1.0](images/task4_equi_1.0.png) |
 | 5.0 | ![task4_equi_50_TAB](images/task4_equi_50_TAB.png) | ![task4_equi_5.0](images/task4_equi_5.0.png) |
 
-⭐ This value shows the number of copy which changes to the new state. 
+⭐ This value shows the number of copies which changes to the new state. 
 
 #### **Summary**
 As the result, many copies change their state in the starting time. After updating around 10-20 times, the number of changing decreases a lot. After that, this number just changes a little bit. Thus, we can conclude that when this number is not changed too much comparing to previous times, then this system reaches the equilibrium.  
